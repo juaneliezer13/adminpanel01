@@ -1,0 +1,7 @@
+services:
+  admin-panel:
+    build: 
+      dockerfile: Dockerfile
+    container_name: vue_app_prod
+    ports:
+      - "8080:80" 
