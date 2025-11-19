@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API_BASE_URL = process.env.VUE_APP_API_BASE_URL || 'http://localhost:3000/api'
+const API_BASE_URL =
+  process.env.VUE_APP_API_BASE_URL || 'http://3.144.192.59:8000'
 const AUTH_TOKEN_KEY = 'auth_token'
 const AUTH_USER_KEY = 'auth_user'
 

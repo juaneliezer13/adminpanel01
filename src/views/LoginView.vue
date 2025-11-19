@@ -119,10 +119,23 @@ const handleLogin = async () => {
       email: credentials.email,
       password: credentials.password
     })
-    if (!response?.token) {
+    const token = response?.token || response?.access_token
+    if (!token) {
       throw new Error('Respuesta inválida del servidor')
     }
-    persistSession(response, credentials.rememberMe)
+    const user =
+      response?.user ||
+      (response?.user_name
+        ? { name: response.user_name, email: credentials.email }
+        : { email: credentials.email })
+
+    persistSession(
+      {
+        token,
+        user
+      },
+      credentials.rememberMe
+    )
     const redirect = route.query.redirect
     router.push(redirect || { name: 'home' })
   } catch (error) {

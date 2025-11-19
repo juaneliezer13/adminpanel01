@@ -22,10 +22,11 @@ npm run lint
 
 ### Variables de entorno
 
-Configura la URL base del backend creando un archivo `.env.local` (o usando variables de entorno del sistema):
+Configura la URL base del backend creando un archivo `.env.local` (o usando variables de entorno del sistema).  
+Por defecto el frontend apunta a la API pública documentada en [http://3.144.192.59:8000/docs](http://3.144.192.59:8000/docs), pero puedes sobrescribirla así:
 
 ```
-VUE_APP_API_BASE_URL=http://localhost:3000/api
+VUE_APP_API_BASE_URL=http://3.144.192.59:8000
 ```
 
 ### Customize configuration
