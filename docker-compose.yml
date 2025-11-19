@@ -1,7 +1,16 @@
 services:
-  admin-panel:
-    build: 
-      dockerfile: Dockerfile
-    container_name: vue_app_prod
+  admin-panel-ui:
+    # Usamos la imagen base de Node en lugar de la construcción Nginx
+    image: node:18-alpine 
+    container_name: admin-panel-ui
     ports:
-      - "8080:80" 
+      # Vue CLI Development Server usa el puerto 8080
+      - "8080:8080" 
+    volumes:
+      # 1. Montar el código fuente local en el contenedor para HMR
+      - ./:/app 
+      # 2. Excluir node_modules del Host, forzando al contenedor a usar los suyos.
+      - /app/node_modules
+    working_dir: /app 
+    # Comando de desarrollo: Instala dependencias y luego inicia el servidor de desarrollo de Vue
+    command: sh -c "npm install && npm run serve -- --host 0.0.0.0"
